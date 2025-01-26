@@ -15,7 +15,7 @@ demo:
 code: 
 authors: Min Tang, <strong>Lixin Zou*</strong>, Shiuan-ni Liang, Zhe Jin, Weiqing Wang, Shujie Cui (*Corresponding Author)
 conference_short: COLING 2025
-publication: The 31st International Conference on Computational Linguistics.<strong>(CCF-B)</strong>
+publication: The 31st International Conference on Computational Linguistics.<strong>(CCF-B, Best Social Impact Paper)</strong>
 pdf: 
 ---
 
