@@ -15,7 +15,7 @@ demo:
 code: 
 authors: Min Tang, Shujie Cui, Zhe Jin, Shiuan-ni Liang, Chenliang Li, <strong>Lixin Zou*</strong> (*Corresponding Author)
 conference_short: IPM 2025  <strong>(Best Journal Paper Award in RecSys 2025)</strong>
-publication: Information Processing & Management 62 (1), 103938. <strong>(SCI-1, CCF-B)</strong>
+publication: Information Processing & Management 62 (1), 103938. <strong>(SCI-1, CCF-B, Best Journal Paper Award in RecSys 2025)</strong>
 pdf: https://www.sciencedirect.com/science/article/pii/S0306457324002978
 ---
 
