@@ -2,646 +2,15 @@
 layout: default
 ---
 
-<style type="text/css">
-  :root {
-    --ink: #1b1f24;
-    --muted: #5c6773;
-    --faint: #8a94a3;
-    --rule: #e7e5e0;
-    --hairline: #f3f1ec;
-    --accent: #b45309;
-    --accent-ink: #8a3f07;
-    --accent-soft: #fff4e6;
-    --accent-border: #f3ddc4;
-    --purple: #5b52c9;
-    --purple-soft: #f1f0fe;
-    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
-      "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
-    --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
-      Georgia, "Songti SC", "Noto Serif CJK SC", serif;
-  }
 
-  html {
-    -webkit-text-size-adjust: 100%;
-  }
 
-  body {
-    margin: 0;
-    color: var(--ink);
-    background-color: #fff;
-    background-image: linear-gradient(90deg, var(--purple) 0%, #8b5cf6 38%, #e37133 100%);
-    background-repeat: no-repeat;
-    background-size: 100% 4px;
-    border: 0;
-    font-family: var(--font-sans);
-    font-size: 16px;
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
-
-  #main.container {
-    max-width: 880px !important;
-    margin: 0 auto !important;
-    padding: 48px 30px 72px !important;
-  }
-
-  a {
-    color: var(--accent);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(180, 83, 9, 0.28);
-    transition: color 140ms ease, border-color 140ms ease, background-color 140ms ease;
-  }
-
-  a:hover,
-  a:focus {
-    color: var(--accent-ink);
-    border-bottom-color: currentColor;
-    background-color: var(--accent-soft);
-  }
-
-  a:focus-visible {
-    outline: 2px solid var(--purple);
-    outline-offset: 2px;
-    border-radius: 2px;
-  }
-
-  ::selection {
-    background: #e9e7ff;
-    color: var(--ink);
-  }
-
-  b,
-  strong {
-    font-weight: 600;
-  }
-
-  b {
-    color: var(--accent-ink);
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  /* ---------- Header ---------- */
-
-  .page-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 30px;
-    padding-bottom: 30px;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .avatar {
-    flex: 0 0 auto;
-    width: 152px;
-    height: 152px;
-    object-fit: cover;
-    border-radius: 16px;
-    box-shadow: 0 0 0 1px rgba(16, 24, 40, 0.05), 0 1px 2px rgba(16, 24, 40, 0.06),
-      0 10px 28px rgba(16, 24, 40, 0.08);
-  }
-
-  .page-header__body {
-    min-width: 0;
-  }
-
-  .name {
-    margin: 0 0 6px;
-    font-family: var(--font-serif);
-    font-size: 38px;
-    font-weight: 600;
-    line-height: 1.12;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-  }
-
-  .role {
-    margin: 0;
-    font-size: 17px;
-    font-weight: 600;
-    line-height: 1.5;
-    color: var(--ink);
-  }
-
-  .affiliation {
-    margin: 3px 0 0;
-    font-size: 15px;
-    line-height: 1.55;
-    color: var(--muted);
-  }
-
-  .honors {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 12px;
-  }
-
-  .honor {
-    display: inline-block;
-    padding: 1px 9px;
-    border: 1px solid var(--rule);
-    border-radius: 999px;
-    background: #faf9f6;
-    font-size: 11.5px;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    color: var(--muted);
-    white-space: nowrap;
-  }
-
-  .contact {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 4px 18px;
-    margin: 14px 0 0;
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--muted);
-  }
-
-  .email {
-    white-space: nowrap;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .contact-links {
-    display: inline-flex;
-    flex-wrap: wrap;
-    gap: 4px 14px;
-  }
-
-  .contact-links a {
-    border-bottom-color: rgba(180, 83, 9, 0.22);
-  }
-
-  /* ---------- Bio ---------- */
-
-  .bio {
-    max-width: 76ch;
-    margin: 28px 0 0;
-    font-size: 16.5px;
-    line-height: 1.8;
-    color: #2b3138;
-  }
-
-  .bio p {
-    margin: 0;
-  }
-
-  /* ---------- Openings notice ---------- */
-
-  .notice {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    margin: 28px 0 0;
-    padding: 18px 22px;
-    background: var(--accent-soft);
-    border-left: 4px solid var(--accent);
-    border-radius: 0 10px 10px 0;
-  }
-
-  .notice__label {
-    flex: 0 0 76px;
-    padding-top: 2px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    line-height: 1.55;
-    color: var(--accent-ink);
-  }
-
-  .notice__label .zh {
-    display: block;
-    letter-spacing: 0.18em;
-  }
-
-  .notice .zh {
-    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
-      "Noto Sans CJK SC", sans-serif;
-  }
-
-  .notice__body p {
-    margin: 0;
-    font-size: 14.8px;
-    line-height: 1.68;
-    color: #43301f;
-  }
-
-  .notice__body p + p {
-    margin-top: 6px;
-  }
-
-  .notice__body .zh {
-    color: #5a3f28;
-  }
-
-  /* ---------- Sections ---------- */
-
-  .section {
-    margin-top: 46px;
-  }
-
-  .section-title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 0 0 12px;
-    padding: 0 0 9px;
-    border-bottom: 1px solid var(--rule);
-    font-family: var(--font-serif);
-    font-size: 21px;
-    font-weight: 600;
-    line-height: 1.3;
-    letter-spacing: 0.005em;
-    color: var(--ink);
-  }
-
-  .section-title::before {
-    content: "";
-    flex: 0 0 auto;
-    width: 5px;
-    height: 19px;
-    border-radius: 3px;
-    background: linear-gradient(180deg, var(--purple), #b45309);
-  }
-
-  .section-note {
-    margin: -3px 0 10px;
-    font-size: 12.5px;
-    line-height: 1.6;
-    color: var(--faint);
-  }
-
-  .section-note a {
-    color: var(--muted);
-    border-bottom-color: rgba(92, 103, 115, 0.25);
-  }
-
-  .section-note a:hover {
-    color: var(--accent-ink);
-    background: transparent;
-  }
-
-  /* ---------- Dated lists (news / experience / awards) ---------- */
-
-  .dated-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .dated-list li {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: baseline;
-    column-gap: 22px;
-    padding: 7px 0;
-    border-bottom: 1px solid var(--hairline);
-    font-size: 14.6px;
-    line-height: 1.55;
-  }
-
-  .dated-list li:last-child {
-    border-bottom: 0;
-    padding-bottom: 0;
-  }
-
-  .dated-list time {
-    font-size: 12.5px;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.02em;
-    color: var(--faint);
-    white-space: nowrap;
-    text-align: right;
-  }
-
-  .dated-list i,
-  .dated-list em {
-    color: var(--ink);
-  }
-
-  /* ---------- Publications ---------- */
-
-  .pub-year {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin: 30px 0 6px;
-    font-family: var(--font-serif);
-    font-size: 19px;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    color: #6f7887;
-  }
-
-  .pub-year:first-child {
-    margin-top: 8px;
-  }
-
-  .pub-year::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: var(--hairline);
-  }
-
-  .pub {
-    padding: 10px 0 13px;
-  }
-
-  .pub + .pub {
-    border-top: 1px solid #f7f5f1;
-  }
-
-  .pub-title {
-    margin: 0 0 5px;
-    font-family: var(--font-serif);
-    font-size: 17.5px;
-    font-weight: 600;
-    line-height: 1.42;
-    color: var(--ink);
-  }
-
-  .pub-authors {
-    margin: 0 0 5px;
-    font-size: 13.5px;
-    line-height: 1.62;
-    color: var(--muted);
-  }
-
-  .pub-authors strong {
-    color: #2f3540;
-    font-weight: 600;
-  }
-
-  .pub-meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 3px 10px;
-    margin: 0;
-    font-size: 13.2px;
-    line-height: 1.6;
-    color: var(--faint);
-  }
-
-  .venue {
-    display: inline-block;
-    padding: 1px 8px;
-    border: 1px solid var(--accent-border);
-    border-radius: 999px;
-    background: var(--accent-soft);
-    font-size: 11.6px;
-    font-weight: 600;
-    letter-spacing: 0.015em;
-    line-height: 1.6;
-    color: var(--accent-ink);
-  }
-
-  .venue strong {
-    font-weight: 700;
-  }
-
-  .pub-venue-full {
-    font-family: var(--font-serif);
-    font-style: italic;
-    color: #7c8694;
-  }
-
-  .pub-venue-full strong {
-    color: var(--accent);
-    font-style: normal;
-    font-weight: 600;
-  }
-
-  .pub-links {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 4px 0;
-    margin: 7px 0 0;
-    font-size: 12.4px;
-    line-height: 1.6;
-  }
-
-  .pub-links a {
-    position: relative;
-    font-weight: 500;
-    color: var(--purple);
-    border-bottom: 1px solid rgba(91, 82, 201, 0.24);
-  }
-
-  .pub-links a + a {
-    margin-left: 20px;
-  }
-
-  .pub-links a + a::before {
-    content: "·";
-    position: absolute;
-    left: -12px;
-    color: #c3c8d2;
-  }
-
-  .pub-links a:hover {
-    color: #443bb0;
-    background: var(--purple-soft);
-    border-bottom-color: currentColor;
-  }
-
-  .pub-star {
-    margin-left: auto;
-    padding-left: 12px;
-  }
-
-  .pub-star a {
-    border: 0;
-  }
-
-  .pub-star img {
-    display: block;
-    height: 20px;
-  }
-
-  /* ---------- Service ---------- */
-
-  .service-role {
-    margin: 0 0 6px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #3a414b;
-  }
-
-  .service-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    font-size: 13.6px;
-    line-height: 1.65;
-    color: var(--muted);
-  }
-
-  .service-list li {
-    display: grid;
-    grid-template-columns: 54px minmax(0, 1fr);
-    column-gap: 16px;
-    padding: 5px 0;
-    border-bottom: 1px solid var(--hairline);
-  }
-
-  .service-list li:last-child {
-    border-bottom: 0;
-  }
-
-  .service-list .year {
-    font-variant-numeric: tabular-nums;
-    font-weight: 600;
-    font-size: 13px;
-    color: var(--ink);
-  }
-
-  /* ---------- Footer ---------- */
-
-  .page-footer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 6px 20px;
-    margin-top: 56px;
-    padding-top: 18px;
-    border-top: 1px solid var(--rule);
-    font-size: 12.5px;
-    line-height: 1.6;
-    color: var(--faint);
-  }
-
-  /* ---------- Responsive ---------- */
-
-  @media (max-width: 680px) {
-    #main.container {
-      padding: 34px 20px 56px !important;
-    }
-
-    .page-header {
-      flex-direction: column;
-      align-items: center;
-      gap: 18px;
-      text-align: center;
-      padding-bottom: 26px;
-    }
-
-    .avatar {
-      width: 124px;
-      height: 124px;
-      border-radius: 14px;
-    }
-
-    .name {
-      font-size: 31px;
-    }
-
-    .role {
-      font-size: 16px;
-    }
-
-    .affiliation {
-      font-size: 14.5px;
-    }
-
-    .honors,
-    .contact {
-      justify-content: center;
-    }
-
-    .contact {
-      gap: 3px 14px;
-      font-size: 13.5px;
-    }
-
-    .bio {
-      font-size: 16px;
-      line-height: 1.76;
-      margin-top: 24px;
-    }
-
-    .notice {
-      flex-direction: column;
-      gap: 4px;
-      padding: 16px 18px;
-    }
-
-    .notice__label {
-      flex-basis: auto;
-      padding-top: 0;
-    }
-
-    .notice__label .zh {
-      display: inline;
-      margin-left: 8px;
-    }
-
-    .section {
-      margin-top: 38px;
-    }
-
-    .section-title {
-      font-size: 19.5px;
-    }
-
-    .dated-list li {
-      column-gap: 12px;
-      font-size: 14.2px;
-    }
-
-    .dated-list time {
-      font-size: 11.8px;
-    }
-
-    .pub-title {
-      font-size: 16.5px;
-    }
-
-    .pub-year {
-      margin-top: 26px;
-      font-size: 18px;
-    }
-
-    .service-list {
-      font-size: 13.2px;
-    }
-
-    .service-list li {
-      grid-template-columns: 46px minmax(0, 1fr);
-      column-gap: 12px;
-    }
-  }
-
-  @media (max-width: 400px) {
-    .dated-list time {
-      font-size: 11.2px;
-    }
-  }
-
-  @media print {
-    body {
-      background-image: none;
-    }
-    #main.container {
-      padding: 0 !important;
-      max-width: none !important;
-    }
-    .pub {
-      break-inside: avoid;
-    }
-  }
-</style>
+<nav class="site-nav" aria-label="Main navigation">
+  <a class="site-nav__brand" href="{{ site.baseurl }}/">Lixin Zou</a>
+  <a href="#news">News</a>
+  <a href="{{ site.baseurl }}/publications/">Publications</a>
+  <a href="#awards">Awards</a>
+  <a href="#service">Service</a>
+</nav>
 
 <div class="page-header">
   <img class="avatar" src="img/zoulixin.jpg" alt="Portrait of Lixin Zou" width="152" height="152">
@@ -677,32 +46,38 @@ layout: default
   </div>
 </div>
 
-<section class="section" aria-labelledby="news-title">
+<section class="section" id="news" aria-labelledby="news-title">
   <h2 class="section-title" id="news-title">News</h2>
-  <ul class="dated-list">
-    <li><span><b>Best Journal Paper Award Winner</b> (Women in RecSys), congratulations to Min.</span><time datetime="2025-09">2025.09</time></li>
-    <li><span>One paper accepted by NeurIPS 2025, congratulations to Qing.</span><time datetime="2025-09">2025.09</time></li>
-    <li><span>One paper accepted by TPAMI, congratulations to Dr. Lin, Qing.</span><time datetime="2025-09">2025.09</time></li>
-    <li><span>Three papers accepted by ACL Findings 2025, congratulations to Wenhua, Yunfan and Zihao.</span><time datetime="2025-05">2025.05</time></li>
-    <li><span>Two papers accepted by IJCAI 2025, congratulations to Feng, Maolin.</span><time datetime="2025-04">2025.04</time></li>
-    <li><span><b>Won the COLING 2025 Best Social Impact Paper</b>, congratulations to Min.</span><time datetime="2025-01">2025.01</time></li>
-    <li><span>Three papers accepted by COLING 2025, congratulations to Min, Yunfan, Weicheng.</span><time datetime="2024-11">2024.11</time></li>
-    <li><span>One paper accepted by TOIS 2024, congratulations to Qing.</span><time datetime="2024-10">2024.10</time></li>
-    <li><span>One paper accepted by IPM 2024, congratulations to Min.</span><time datetime="2024-10">2024.10</time></li>
-    <li><span>Two papers accepted by CIKM 2024, congratulations to Zihao and Zuoli.</span><time datetime="2024-07">2024.07</time></li>
-    <li><span>One paper accepted by ECML 2024, congratulations to Min.</span><time datetime="2024-05">2024.05</time></li>
-    <li><span>One paper accepted by ACL Findings 2024, congratulations to Chaoran.</span><time datetime="2024-03">2024.03</time></li>
-    <li><span>One paper accepted by SIGIR 2024, congratulations to Dan Luo.</span><time datetime="2024-03">2024.03</time></li>
-    <li><span>One paper accepted by WWW 2024, congratulations to Haitao.</span><time datetime="2024-02">2024.02</time></li>
-    <li><span>One paper accepted by ICDE 2024, congratulations to Xiaokai.</span><time datetime="2024-01">2024.01</time></li>
-    <li><span>Selected as the Xiaomi Young Scholar 2023.</span><time datetime="2023-11">2023.11</time></li>
-    <li><span>One paper accepted by WSDM 2024, congratulations to Dan Luo.</span><time datetime="2023-10">2023.10</time></li>
-    <li><span>One paper accepted by RecSys 2023, congratulations to Zihao.</span><time datetime="2023-06">2023.06</time></li>
-    <li><span>One paper accepted by TNNLS 2023, congratulations to Yuanguo.</span><time datetime="2023-04">2023.04</time></li>
-    <li><span>One paper accepted by TNNLS 2023, congratulations to Wanli.</span><time datetime="2023-03">2023.03</time></li>
-    <li><span>One paper accepted by WWW 2023, congratulations to Kesen.</span><time datetime="2023-02">2023.02</time></li>
-    <li><span>One paper accepted by NeurIPS 2022, congratulations to the team.</span><time datetime="2022-12">2022.12</time></li>
+  <ul class="news-list">
+    <li class="month-start"><time datetime="2025-09">2025.09</time><span><b>Best Journal Paper Award Winner</b> (Women in RecSys), congratulations to Min.</span></li>
+    <li><span class="date" aria-hidden="true"></span><span>One paper accepted by NeurIPS 2025, congratulations to Qing.</span></li>
+    <li><span class="date" aria-hidden="true"></span><span>One paper accepted by TPAMI, congratulations to Dr. Lin, Qing.</span></li>
+    <li class="month-start"><time datetime="2025-05">2025.05</time><span>Three papers accepted by ACL Findings 2025, congratulations to Wenhua, Yunfan and Zihao.</span></li>
+    <li class="month-start"><time datetime="2025-04">2025.04</time><span>Two papers accepted by IJCAI 2025, congratulations to Feng, Maolin.</span></li>
+    <li class="month-start"><time datetime="2025-01">2025.01</time><span><b>Won the COLING 2025 Best Social Impact Paper</b>, congratulations to Min.</span></li>
+    <li class="month-start"><time datetime="2024-11">2024.11</time><span>Three papers accepted by COLING 2025, congratulations to Min, Yunfan, Weicheng.</span></li>
+    <li class="month-start"><time datetime="2024-10">2024.10</time><span>One paper accepted by TOIS 2024, congratulations to Qing.</span></li>
+    <li><span class="date" aria-hidden="true"></span><span>One paper accepted by IPM 2024, congratulations to Min.</span></li>
   </ul>
+
+  <details class="news-more">
+    <summary>Older news <span class="news-count">(13)</span></summary>
+    <ul class="news-list">
+      <li class="month-start"><time datetime="2024-07">2024.07</time><span>Two papers accepted by CIKM 2024, congratulations to Zihao and Zuoli.</span></li>
+      <li class="month-start"><time datetime="2024-05">2024.05</time><span>One paper accepted by ECML 2024, congratulations to Min.</span></li>
+      <li class="month-start"><time datetime="2024-03">2024.03</time><span>One paper accepted by ACL Findings 2024, congratulations to Chaoran.</span></li>
+      <li><span class="date" aria-hidden="true"></span><span>One paper accepted by SIGIR 2024, congratulations to Dan Luo.</span></li>
+      <li class="month-start"><time datetime="2024-02">2024.02</time><span>One paper accepted by WWW 2024, congratulations to Haitao.</span></li>
+      <li class="month-start"><time datetime="2024-01">2024.01</time><span>One paper accepted by ICDE 2024, congratulations to Xiaokai.</span></li>
+      <li class="month-start"><time datetime="2023-11">2023.11</time><span>Selected as the Xiaomi Young Scholar 2023.</span></li>
+      <li class="month-start"><time datetime="2023-10">2023.10</time><span>One paper accepted by WSDM 2024, congratulations to Dan Luo.</span></li>
+      <li class="month-start"><time datetime="2023-06">2023.06</time><span>One paper accepted by RecSys 2023, congratulations to Zihao.</span></li>
+      <li class="month-start"><time datetime="2023-04">2023.04</time><span>One paper accepted by TNNLS 2023, congratulations to Yuanguo.</span></li>
+      <li class="month-start"><time datetime="2023-03">2023.03</time><span>One paper accepted by TNNLS 2023, congratulations to Wanli.</span></li>
+      <li class="month-start"><time datetime="2023-02">2023.02</time><span>One paper accepted by WWW 2023, congratulations to Kesen.</span></li>
+      <li class="month-start"><time datetime="2022-12">2022.12</time><span>One paper accepted by NeurIPS 2022, congratulations to the team.</span></li>
+    </ul>
+  </details>
 </section>
 
 <section class="section" aria-labelledby="experience-title">
@@ -715,72 +90,18 @@ layout: default
   </ul>
 </section>
 
-<section class="section" aria-labelledby="publications-title">
-  <h2 class="section-title" id="publications-title">Selected Publications</h2>
-  <p class="section-note">(* Corresponding author) &nbsp;·&nbsp; <a target="_blank" rel="noopener" href="https://scholar.google.com/citations?user=J8tHYjIAAAAJ">Full publication list</a></p>
+<section class="section" id="recent-publications" aria-labelledby="publications-title">
+  <h2 class="section-title" id="publications-title">Recent Publications</h2>
+  <p class="section-note">(* Corresponding author) &nbsp;·&nbsp; Latest papers</p>
 
-  {% assign current_year = "" %}
-  {% for post in site.posts %}
-    {% if post.is_show and post.highlight == nil %}
-      {% if post.year != current_year %}
-        <div class="pub-year">{{ post.year }}</div>
-        {% assign current_year = post.year %}
-      {% endif %}
+  <div class="pub-list">
+    {% include publication-list.html limit=8 %}
+  </div>
 
-      <article class="pub">
-        <h3 class="pub-title">{{ post.title }}</h3>
-
-        <p class="pub-authors">{{ post.authors }}</p>
-
-        <p class="pub-meta">
-          {% if post.conference_short and post.conference_short != "" %}
-            <span class="venue">{{ post.conference_short }}</span>
-          {% endif %}
-          {% if post.publication and post.publication != "" %}
-            <span class="pub-venue-full">{{ post.publication }}</span>
-          {% endif %}
-          {% if post.journal and post.journal != "" %}
-            <span class="pub-venue-full">/ {{ post.journal }}</span>
-          {% endif %}
-        </p>
-
-        {% assign has_links = false %}
-        {% if post.arxiv_url and post.arxiv_url != "" %}{% assign has_links = true %}{% endif %}
-        {% if post.extented_url and post.extented_url != "" %}{% assign has_links = true %}{% endif %}
-        {% if post.demo and post.demo != "" %}{% assign has_links = true %}{% endif %}
-        {% if post.project and post.project != "" %}{% assign has_links = true %}{% endif %}
-        {% if post.code and post.code != "" %}{% assign has_links = true %}{% endif %}
-
-        {% if has_links %}
-          <p class="pub-links">
-            {% if post.arxiv_url and post.arxiv_url != "" %}
-              <a target="_blank" rel="noopener" href="{{ post.arxiv_url }}">arXiv</a>
-            {% endif %}
-            {% if post.extented_url and post.extented_url != "" %}
-              <a target="_blank" rel="noopener" href="{{ post.extented_url }}">Extended Version</a>
-            {% endif %}
-            {% if post.demo and post.demo != "" %}
-              <a target="_blank" rel="noopener" href="{{ post.demo }}">Online Demo</a>
-            {% endif %}
-            {% if post.project and post.project != "" %}
-              <a target="_blank" rel="noopener" href="{{ post.project }}">Project Page</a>
-            {% endif %}
-            {% if post.code and post.code != "" %}
-              <a target="_blank" rel="noopener" href="{{ post.code }}">Code</a>
-            {% endif %}
-            {% if post.code and post.code != "" %}
-              <span class="pub-star">
-                <a target="_blank" rel="noopener" href="{{ post.code }}"><img src="https://img.shields.io/github/stars/{{ post.code | replace: 'https://github.com/', '' }}?style=social" alt="GitHub stars"></a>
-              </span>
-            {% endif %}
-          </p>
-        {% endif %}
-      </article>
-    {% endif %}
-  {% endfor %}
+  <p class="section-more"><a class="button-link" href="{{ site.baseurl }}/publications/">View all publications <span aria-hidden="true">→</span></a></p>
 </section>
 
-<section class="section" aria-labelledby="awards-title">
+<section class="section" id="awards" aria-labelledby="awards-title">
   <h2 class="section-title" id="awards-title">Selected Awards</h2>
   <ul class="dated-list">
     <li><span><b>COLING 2025 Best Social Impact Paper</b></span><time>2025</time></li>
@@ -798,7 +119,7 @@ layout: default
   </ul>
 </section>
 
-<section class="section" aria-labelledby="service-title">
+<section class="section" id="service" aria-labelledby="service-title">
   <h2 class="section-title" id="service-title">Professional Service</h2>
   <p class="service-role">Program Committee Member &amp; Reviewer</p>
   <ul class="service-list">

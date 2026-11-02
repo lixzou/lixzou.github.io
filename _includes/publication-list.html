@@ -1,0 +1,59 @@
+{% assign current_year = "" %}
+{% for post in site.posts limit: include.limit %}
+  {% if post.is_show and post.highlight == nil %}
+    {% if post.year != current_year %}
+      <div class="pub-year">{{ post.year }}</div>
+      {% assign current_year = post.year %}
+    {% endif %}
+
+    <article class="pub">
+      <h3 class="pub-title">{{ post.title }}</h3>
+
+      <p class="pub-authors">{{ post.authors }}</p>
+
+      <p class="pub-meta">
+        {% if post.conference_short and post.conference_short != "" %}
+          <span class="venue">{{ post.conference_short }}</span>
+        {% endif %}
+        {% if post.publication and post.publication != "" %}
+          <span class="pub-venue-full">{{ post.publication }}</span>
+        {% endif %}
+        {% if post.journal and post.journal != "" %}
+          <span class="pub-venue-full">/ {{ post.journal }}</span>
+        {% endif %}
+      </p>
+
+      {% assign has_links = false %}
+      {% if post.arxiv_url and post.arxiv_url != "" %}{% assign has_links = true %}{% endif %}
+      {% if post.extented_url and post.extented_url != "" %}{% assign has_links = true %}{% endif %}
+      {% if post.demo and post.demo != "" %}{% assign has_links = true %}{% endif %}
+      {% if post.project and post.project != "" %}{% assign has_links = true %}{% endif %}
+      {% if post.code and post.code != "" %}{% assign has_links = true %}{% endif %}
+
+      {% if has_links %}
+        <p class="pub-links">
+          {% if post.arxiv_url and post.arxiv_url != "" %}
+            <a target="_blank" rel="noopener" href="{{ post.arxiv_url }}">arXiv</a>
+          {% endif %}
+          {% if post.extented_url and post.extented_url != "" %}
+            <a target="_blank" rel="noopener" href="{{ post.extented_url }}">Extended Version</a>
+          {% endif %}
+          {% if post.demo and post.demo != "" %}
+            <a target="_blank" rel="noopener" href="{{ post.demo }}">Online Demo</a>
+          {% endif %}
+          {% if post.project and post.project != "" %}
+            <a target="_blank" rel="noopener" href="{{ post.project }}">Project Page</a>
+          {% endif %}
+          {% if post.code and post.code != "" %}
+            <a target="_blank" rel="noopener" href="{{ post.code }}">Code</a>
+          {% endif %}
+          {% if post.code and post.code != "" %}
+            <span class="pub-star">
+              <a target="_blank" rel="noopener" href="{{ post.code }}"><img src="https://img.shields.io/github/stars/{{ post.code | replace: 'https://github.com/', '' }}?style=social" alt="GitHub stars"></a>
+            </span>
+          {% endif %}
+        </p>
+      {% endif %}
+    </article>
+  {% endif %}
+{% endfor %}

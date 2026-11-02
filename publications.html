@@ -1,0 +1,27 @@
+---
+layout: default
+title: Publications
+permalink: /publications/
+---
+
+<nav class="site-nav" aria-label="Main navigation">
+  <a class="site-nav__brand" href="{{ site.baseurl }}/">Lixin Zou</a>
+  <a href="{{ site.baseurl }}/#news">News</a>
+  <a class="is-current" href="{{ site.baseurl }}/publications/" aria-current="page">Publications</a>
+  <a href="{{ site.baseurl }}/#awards">Awards</a>
+  <a href="{{ site.baseurl }}/#service">Service</a>
+</nav>
+
+<header class="page-intro">
+  <h1 class="page-title">Publications</h1>
+  <p class="page-lead">Full list of publications, grouped by year. (* Corresponding author) &nbsp;·&nbsp; <a target="_blank" rel="noopener" href="https://scholar.google.com/citations?user=J8tHYjIAAAAJ">Google Scholar</a></p>
+</header>
+
+<div class="pub-list">
+  {% include publication-list.html limit=1000 %}
+</div>
+
+<footer class="page-footer">
+  <span>© Lixin Zou</span>
+  <span>School of Cyber Science and Engineering, Wuhan University</span>
+</footer>
