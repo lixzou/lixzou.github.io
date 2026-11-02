@@ -2,7 +2,7 @@
 {% for post in site.posts limit: include.limit %}
   {% if post.is_show and post.highlight == nil %}
     {% if post.year != current_year %}
-      <div class="pub-year">{{ post.year }}</div>
+      <div class="pub-year" id="year-{{ post.year }}">{{ post.year }}</div>
       {% assign current_year = post.year %}
     {% endif %}
 

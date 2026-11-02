@@ -22,6 +22,20 @@
       {{ content }}
     </div>
 
+    <script>
+      (function () {
+        var btn = document.querySelector(".back-to-top");
+        var nav = document.querySelector(".site-nav");
+        var update = function () {
+          if (btn) btn.classList.toggle("is-off", window.scrollY < 480);
+          if (nav) nav.classList.toggle("is-top", nav.getBoundingClientRect().top > 0);
+        };
+        window.addEventListener("scroll", update, { passive: true });
+        window.addEventListener("resize", update);
+        update();
+      })();
+    </script>
+
 <!--     <div class="wrapper-footer">
       <div class="container">
         <footer class="footer">

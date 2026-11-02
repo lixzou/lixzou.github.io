@@ -4,7 +4,7 @@ layout: default
 
 
 
-<nav class="site-nav" aria-label="Main navigation">
+<nav class="site-nav" id="top" aria-label="Main navigation">
   <a class="site-nav__brand" href="{{ site.baseurl }}/">Lixin Zou</a>
   <a href="#news">News</a>
   <a href="{{ site.baseurl }}/publications/">Publications</a>
@@ -15,7 +15,7 @@ layout: default
 <div class="page-header">
   <img class="avatar" src="img/zoulixin.jpg" alt="Portrait of Lixin Zou" width="152" height="152">
   <div class="page-header__body">
-    <h1 class="name">Lixin Zou</h1>
+    <h1 class="name">Lixin Zou <span class="name-zh" lang="zh-CN">（邹立新）</span></h1>
     <p class="role">Associate Professor</p>
     <p class="affiliation">
       School of Cyber Science and Engineering, Wuhan University, China<br>
@@ -32,7 +32,7 @@ layout: default
 </div>
 
 <div class="bio">
-  <p>I am currently an Associate Professor in the <a href="https://cse.whu.edu.cn/">School of Cyber Science and Engineering</a> at <a href="https://www.whu.edu.cn/" target="_blank" rel="noopener">Wuhan University</a> since 2022.12. I received my Ph.D. degree from <a href="https://www.tsinghua.edu.cn/">Tsinghua University</a> in 2020, where I was advised by Prof. <a href="https://www.cs.tsinghua.edu.cn/info/1137/3885.htm">Weidong Liu</a>. Before joining Wuhan University, I was a Staff Algorithm Engineer at <a href="https://www.baidu.com">Baidu Inc.</a> from 2020 to 2022. My main research interests include efficient large language models, web search, recommendation systems, and data denoising. I have received the <b>COLING 2025 Best Social Impact Paper</b>, the <b>KDD Cup 2019 Runner-Up Award</b>, and have been selected as a <b>Xiaomi Young Scholar</b>.</p>
+  <p>I am currently an Associate Professor in the <a href="https://cse.whu.edu.cn/">School of Cyber Science and Engineering</a> at <a href="https://www.whu.edu.cn/" target="_blank" rel="noopener">Wuhan University</a> since 2022.12. I received my Ph.D. degree from <a href="https://www.tsinghua.edu.cn/">Tsinghua University</a> in 2020, where I was advised by Prof. <a href="https://www.cs.tsinghua.edu.cn/info/1137/3885.htm">Weidong Liu</a>. Before joining Wuhan University, I was an Algorithm Engineer at <a href="https://www.baidu.com">Baidu Inc.</a> from 2020 to 2022. My main research interests include efficient large language models, web search, recommendation systems, and data denoising. I have received the <b>COLING 2025 Best Social Impact Paper</b>, the <b>KDD Cup 2019 Runner-Up Award</b>, and have been selected as a <b>Xiaomi Young Scholar</b>.</p>
 </div>
 
 <div class="notice">
@@ -84,7 +84,7 @@ layout: default
   <h2 class="section-title" id="experience-title">Education &amp; Experience</h2>
   <ul class="dated-list">
     <li><span>Associate Professor, School of Cyber Science and Engineering, <i>Wuhan University</i></span><time>2022.12 – Present</time></li>
-    <li><span>Staff Algorithm Engineer, Baidu Inc.</span><time>2020.07 – 2022.11</time></li>
+    <li><span>Algorithm Engineer, Baidu Inc.</span><time>2020.07 – 2022.11</time></li>
     <li><span>Ph.D. in Computer Science &amp; Technology, Tsinghua University</span><time>2015.09 – 2020.06</time></li>
     <li><span>BEng. in Microelectronics, Northwestern Polytechnical University</span><time>2011.09 – 2015.07</time></li>
   </ul>
@@ -103,20 +103,26 @@ layout: default
 
 <section class="section" id="awards" aria-labelledby="awards-title">
   <h2 class="section-title" id="awards-title">Selected Awards</h2>
-  <ul class="dated-list">
+  <ul class="dated-list awards-list">
     <li><span><b>COLING 2025 Best Social Impact Paper</b></span><time>2025</time></li>
     <li><span><b>Xiaomi Young Scholar</b></span><time>2023</time></li>
     <li><span>Outstanding Staff of MEG, Baidu Inc.</span><time>2021</time></li>
     <li><span>Outstanding Graduate of Department of Computer Science, Tsinghua University</span><time>2020</time></li>
     <li><span>Tsinghua Yiqi Mei Scholarship</span><time>2019</time></li>
     <li><span>The Runner Up Award of KDD Cup</span><time>2019</time></li>
-    <li><span>The Scholarship of People.cn</span><time>2017</time></li>
-    <li><span>First Prize in CCF National Big Data Innovation Contest, 1/1</span><time>2016</time></li>
-    <li><span>Yajun Wu Second Scholarship for Undergraduate Student, 1/1</span><time>2014</time></li>
-    <li><span>National Scholarship for Undergraduate Student, 1/1</span><time>2014</time></li>
-    <li><span>The Honorable Mention in the US Mathematical Contest in Modeling</span><time>2014</time></li>
-    <li><span>National Scholarship for Undergraduate Student, 1/1</span><time>2012</time></li>
   </ul>
+
+  <details class="awards-more">
+    <summary>Older awards <span class="news-count">(6)</span></summary>
+    <ul class="dated-list awards-list">
+      <li><span>The Scholarship of People.cn</span><time>2017</time></li>
+      <li><span>First Prize in CCF National Big Data Innovation Contest, 1/1</span><time>2016</time></li>
+      <li><span>Yajun Wu Second Scholarship for Undergraduate Student, 1/1</span><time>2014</time></li>
+      <li><span>National Scholarship for Undergraduate Student, 1/1</span><time>2014</time></li>
+      <li><span>The Honorable Mention in the US Mathematical Contest in Modeling</span><time>2014</time></li>
+      <li><span>National Scholarship for Undergraduate Student, 1/1</span><time>2012</time></li>
+    </ul>
+  </details>
 </section>
 
 <section class="section" id="service" aria-labelledby="service-title">
@@ -133,5 +139,10 @@ layout: default
 
 <footer class="page-footer">
   <span>© Lixin Zou</span>
+  <span class="page-footer__updated">Updated {{ site.time | date: "%Y.%m" }}</span>
   <span>School of Cyber Science and Engineering, Wuhan University</span>
 </footer>
+
+<a class="back-to-top" href="#top" aria-label="Back to top" title="Back to top">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>

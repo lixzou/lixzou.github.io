@@ -4,7 +4,7 @@ title: Publications
 permalink: /publications/
 ---
 
-<nav class="site-nav" aria-label="Main navigation">
+<nav class="site-nav" id="top" aria-label="Main navigation">
   <a class="site-nav__brand" href="{{ site.baseurl }}/">Lixin Zou</a>
   <a href="{{ site.baseurl }}/#news">News</a>
   <a class="is-current" href="{{ site.baseurl }}/publications/" aria-current="page">Publications</a>
@@ -17,11 +17,33 @@ permalink: /publications/
   <p class="page-lead">Full list of publications, grouped by year. (* Corresponding author) &nbsp;·&nbsp; <a target="_blank" rel="noopener" href="https://scholar.google.com/citations?user=J8tHYjIAAAAJ">Google Scholar</a></p>
 </header>
 
+{% capture year_data %}{% for post in site.posts %}{% if post.is_show and post.highlight == nil %}{{ post.year }}|{% endif %}{% endfor %}{% endcapture %}
+{% assign years = year_data | split: "|" | uniq %}
+<nav class="year-jump" aria-label="Jump to publication year">
+  {% for y in years %}
+    {% if y != "" %}
+      {% assign count = 0 %}
+      {% for post in site.posts %}
+        {% if post.is_show and post.highlight == nil %}
+          {% assign py = post.year | append: "" %}
+          {% if py == y %}{% assign count = count | plus: 1 %}{% endif %}
+        {% endif %}
+      {% endfor %}
+      <a href="#year-{{ y }}">{{ y }} <span class="count">{{ count }}</span></a>
+    {% endif %}
+  {% endfor %}
+</nav>
+
 <div class="pub-list">
   {% include publication-list.html limit=1000 %}
 </div>
 
 <footer class="page-footer">
   <span>© Lixin Zou</span>
+  <span class="page-footer__updated">Updated {{ site.time | date: "%Y.%m" }}</span>
   <span>School of Cyber Science and Engineering, Wuhan University</span>
 </footer>
+
+<a class="back-to-top" href="#top" aria-label="Back to top" title="Back to top">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>
