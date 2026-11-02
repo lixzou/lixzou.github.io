@@ -2,300 +2,817 @@
 layout: default
 ---
 
-
 <style type="text/css">
-    .container{
-      max-width: 900px !important;
-    }
-    body{
-        font-family: Optima, "Times New Roman", Times, serif;
-        font-weight: 200;
-        font-size: 16px;
-        /*background-color: rgb(43, 60, 197);*/
-        /*color: rgb(0, 79, 241);*/
-        /*color: white;*/
-        border-top:5px solid #6059f5aa;
-        border-bottom:5px solid #6059f5aa;
-    }
-    b{
-      color: #e37133;
-    }
-    .posts{
-        /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
-        font-size: 14px;
+  :root {
+    --ink: #1b1f24;
+    --muted: #5c6773;
+    --faint: #8a94a3;
+    --rule: #e7e5e0;
+    --hairline: #f3f1ec;
+    --accent: #b45309;
+    --accent-ink: #8a3f07;
+    --accent-soft: #fff4e6;
+    --accent-border: #f3ddc4;
+    --purple: #5b52c9;
+    --purple-soft: #f1f0fe;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
+      "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+    --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
+      Georgia, "Songti SC", "Noto Serif CJK SC", serif;
+  }
 
-    }
-    .news{
-      margin-top: 0;
-      line-height: 1.5em;
-    }
-    .post{
-      border-left: 5px solid #6059f5aa;
-    }
-    .xtitle{
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 24px;
-        margin-top: 15px;
-        font-weight: 400;
-        color: #e37133;
-    }
-    .post-hidden{
-      display: none;
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    color: var(--ink);
+    background-color: #fff;
+    background-image: linear-gradient(90deg, var(--purple) 0%, #8b5cf6 38%, #e37133 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 4px;
+    border: 0;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  #main.container {
+    max-width: 880px !important;
+    margin: 0 auto !important;
+    padding: 48px 30px 72px !important;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(180, 83, 9, 0.28);
+    transition: color 140ms ease, border-color 140ms ease, background-color 140ms ease;
+  }
+
+  a:hover,
+  a:focus {
+    color: var(--accent-ink);
+    border-bottom-color: currentColor;
+    background-color: var(--accent-soft);
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--purple);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: #e9e7ff;
+    color: var(--ink);
+  }
+
+  b,
+  strong {
+    font-weight: 600;
+  }
+
+  b {
+    color: var(--accent-ink);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* ---------- Header ---------- */
+
+  .page-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .avatar {
+    flex: 0 0 auto;
+    width: 152px;
+    height: 152px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 0 0 1px rgba(16, 24, 40, 0.05), 0 1px 2px rgba(16, 24, 40, 0.06),
+      0 10px 28px rgba(16, 24, 40, 0.08);
+  }
+
+  .page-header__body {
+    min-width: 0;
+  }
+
+  .name {
+    margin: 0 0 6px;
+    font-family: var(--font-serif);
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .role {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  .affiliation {
+    margin: 3px 0 0;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  .honors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+  }
+
+  .honor {
+    display: inline-block;
+    padding: 1px 9px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    background: #faf9f6;
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 18px;
+    margin: 14px 0 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .email {
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .contact-links {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+  }
+
+  .contact-links a {
+    border-bottom-color: rgba(180, 83, 9, 0.22);
+  }
+
+  /* ---------- Bio ---------- */
+
+  .bio {
+    max-width: 76ch;
+    margin: 28px 0 0;
+    font-size: 16.5px;
+    line-height: 1.8;
+    color: #2b3138;
+  }
+
+  .bio p {
+    margin: 0;
+  }
+
+  /* ---------- Openings notice ---------- */
+
+  .notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin: 28px 0 0;
+    padding: 18px 22px;
+    background: var(--accent-soft);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+  }
+
+  .notice__label {
+    flex: 0 0 76px;
+    padding-top: 2px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1.55;
+    color: var(--accent-ink);
+  }
+
+  .notice__label .zh {
+    display: block;
+    letter-spacing: 0.18em;
+  }
+
+  .notice .zh {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+      "Noto Sans CJK SC", sans-serif;
+  }
+
+  .notice__body p {
+    margin: 0;
+    font-size: 14.8px;
+    line-height: 1.68;
+    color: #43301f;
+  }
+
+  .notice__body p + p {
+    margin-top: 6px;
+  }
+
+  .notice__body .zh {
+    color: #5a3f28;
+  }
+
+  /* ---------- Sections ---------- */
+
+  .section {
+    margin-top: 46px;
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 12px;
+    padding: 0 0 9px;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--font-serif);
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0.005em;
+    color: var(--ink);
+  }
+
+  .section-title::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 5px;
+    height: 19px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, var(--purple), #b45309);
+  }
+
+  .section-note {
+    margin: -3px 0 10px;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--faint);
+  }
+
+  .section-note a {
+    color: var(--muted);
+    border-bottom-color: rgba(92, 103, 115, 0.25);
+  }
+
+  .section-note a:hover {
+    color: var(--accent-ink);
+    background: transparent;
+  }
+
+  /* ---------- Dated lists (news / experience / awards) ---------- */
+
+  .dated-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .dated-list li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+    column-gap: 22px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--hairline);
+    font-size: 14.6px;
+    line-height: 1.55;
+  }
+
+  .dated-list li:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .dated-list time {
+    font-size: 12.5px;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+    color: var(--faint);
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .dated-list i,
+  .dated-list em {
+    color: var(--ink);
+  }
+
+  /* ---------- Publications ---------- */
+
+  .pub-year {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 30px 0 6px;
+    font-family: var(--font-serif);
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: #6f7887;
+  }
+
+  .pub-year:first-child {
+    margin-top: 8px;
+  }
+
+  .pub-year::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--hairline);
+  }
+
+  .pub {
+    padding: 10px 0 13px;
+  }
+
+  .pub + .pub {
+    border-top: 1px solid #f7f5f1;
+  }
+
+  .pub-title {
+    margin: 0 0 5px;
+    font-family: var(--font-serif);
+    font-size: 17.5px;
+    font-weight: 600;
+    line-height: 1.42;
+    color: var(--ink);
+  }
+
+  .pub-authors {
+    margin: 0 0 5px;
+    font-size: 13.5px;
+    line-height: 1.62;
+    color: var(--muted);
+  }
+
+  .pub-authors strong {
+    color: #2f3540;
+    font-weight: 600;
+  }
+
+  .pub-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 3px 10px;
+    margin: 0;
+    font-size: 13.2px;
+    line-height: 1.6;
+    color: var(--faint);
+  }
+
+  .venue {
+    display: inline-block;
+    padding: 1px 8px;
+    border: 1px solid var(--accent-border);
+    border-radius: 999px;
+    background: var(--accent-soft);
+    font-size: 11.6px;
+    font-weight: 600;
+    letter-spacing: 0.015em;
+    line-height: 1.6;
+    color: var(--accent-ink);
+  }
+
+  .venue strong {
+    font-weight: 700;
+  }
+
+  .pub-venue-full {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: #7c8694;
+  }
+
+  .pub-venue-full strong {
+    color: var(--accent);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .pub-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 0;
+    margin: 7px 0 0;
+    font-size: 12.4px;
+    line-height: 1.6;
+  }
+
+  .pub-links a {
+    position: relative;
+    font-weight: 500;
+    color: var(--purple);
+    border-bottom: 1px solid rgba(91, 82, 201, 0.24);
+  }
+
+  .pub-links a + a {
+    margin-left: 20px;
+  }
+
+  .pub-links a + a::before {
+    content: "·";
+    position: absolute;
+    left: -12px;
+    color: #c3c8d2;
+  }
+
+  .pub-links a:hover {
+    color: #443bb0;
+    background: var(--purple-soft);
+    border-bottom-color: currentColor;
+  }
+
+  .pub-star {
+    margin-left: auto;
+    padding-left: 12px;
+  }
+
+  .pub-star a {
+    border: 0;
+  }
+
+  .pub-star img {
+    display: block;
+    height: 20px;
+  }
+
+  /* ---------- Service ---------- */
+
+  .service-role {
+    margin: 0 0 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #3a414b;
+  }
+
+  .service-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 13.6px;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  .service-list li {
+    display: grid;
+    grid-template-columns: 54px minmax(0, 1fr);
+    column-gap: 16px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .service-list li:last-child {
+    border-bottom: 0;
+  }
+
+  .service-list .year {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--ink);
+  }
+
+  /* ---------- Footer ---------- */
+
+  .page-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 6px 20px;
+    margin-top: 56px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--faint);
+  }
+
+  /* ---------- Responsive ---------- */
+
+  @media (max-width: 680px) {
+    #main.container {
+      padding: 34px 20px 56px !important;
     }
 
-    a{
-      color: #e37133;
-      position: relative;
+    .page-header {
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      text-align: center;
+      padding-bottom: 26px;
     }
 
-    .user-info a{
-      color: #333;
-    }
-    .user-info a:after{
-      content: '';
-      position: absolute;
-      top: 60%;
-      left: -0.1em;
-      right: -0.1em;
-      bottom: 0;
-      transition:top 200ms cubic-bezier(0, 0.8, 0.13, 1);
-      /*background-color: rgba(225, 166, 121, 0.5);*/
-      background-color: rgba(255,211,30, 0.5);
+    .avatar {
+      width: 124px;
+      height: 124px;
+      border-radius: 14px;
     }
 
-    .authors-entry a {
-      color: #666
+    .name {
+      font-size: 31px;
     }
 
-    .emojilink:after{
-      background-color: rgba(255,211,30, 0.0)
-      /*rgba(225, 166, 121, 0.0);*/
-    }
-    a:hover{
-      color:rgb(255, 180, 240);
-    }
-    a:hover:after{
-      color:rgb(255, 180, 240);
-      /*color: #111;*/
-      top:0%;
-    }
-    .xcode a:after{
-      content: '';
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      transition:top 200ms cubic-bezier(0, 0.8, 0.13, 1);
-      /*background-color: rgba(225, 166, 121, 0.5);*/
-      background-color: #fff;
-    }
-    .xcode a:hover:after{
-      color: #fff;
-      /*color: #111;*/
-    }
-    .entry{
-        position: relative;
-        top:0;
-        left: 20px;
-        margin-top: 5px;
+    .role {
+      font-size: 16px;
     }
 
-    .posts > .post{
-        border-bottom: 0;
-        padding-bottom:0em;
-        padding-top: 10px;
-        margin-bottom: 10px;
-    }
-    .papertitle{
-        margin-top: 0px;
-        font-weight: 600;
-        font-size:16px;
-        font-style: italic;
-        /*font-style: italic;*/
-        /*height: 2.6em*/
+    .affiliation {
+      font-size: 14.5px;
     }
 
+    .honors,
+    .contact {
+      justify-content: center;
+    }
+
+    .contact {
+      gap: 3px 14px;
+      font-size: 13.5px;
+    }
+
+    .bio {
+      font-size: 16px;
+      line-height: 1.76;
+      margin-top: 24px;
+    }
+
+    .notice {
+      flex-direction: column;
+      gap: 4px;
+      padding: 16px 18px;
+    }
+
+    .notice__label {
+      flex-basis: auto;
+      padding-top: 0;
+    }
+
+    .notice__label .zh {
+      display: inline;
+      margin-left: 8px;
+    }
+
+    .section {
+      margin-top: 38px;
+    }
+
+    .section-title {
+      font-size: 19.5px;
+    }
+
+    .dated-list li {
+      column-gap: 12px;
+      font-size: 14.2px;
+    }
+
+    .dated-list time {
+      font-size: 11.8px;
+    }
+
+    .pub-title {
+      font-size: 16.5px;
+    }
+
+    .pub-year {
+      margin-top: 26px;
+      font-size: 18px;
+    }
+
+    .service-list {
+      font-size: 13.2px;
+    }
+
+    .service-list li {
+      grid-template-columns: 46px minmax(0, 1fr);
+      column-gap: 12px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .dated-list time {
+      font-size: 11.2px;
+    }
+  }
+
+  @media print {
+    body {
+      background-image: none;
+    }
+    #main.container {
+      padding: 0 !important;
+      max-width: none !important;
+    }
+    .pub {
+      break-inside: avoid;
+    }
+  }
 </style>
-<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<!-- Place this tag in your head or just before your close body tag. -->
-<script async defer src="https://buttons.github.io/buttons.js"></script>
 
-<script type="text/javascript">
-
-$(function(){
-  $('#vis_teaser').on('click', function(){
-      $('.unimportant').toggleClass('post-hidden')
- });
-});
-</script>
-
-<div class='user-info'>
-
-<img style="width: 170px;float: left;" src="img/zoulixin.png" alt="">
-
-<div style="position: relative; left:40px; top:10px">
-<div style="font-size:24px;font-weight: 400">Lixin Zou</div>
-<div>Associate Professor</div>
-<div>School of Cyber Science and Engineering, Wuhan University, China</br> Xiaomi Young Scholar</br> Huawei Young Scholar</div>
-Email (zoulixin AT whu DOT edu DOT cn)  </br> <a target="_blank" href="https://scholar.google.com/citations?user=J8tHYjIAAAAJ">Google Scholar</a> / <a target="_blank" href="https://jszy.whu.edu.cn/ZouLixin/zh_CN/index.htm">HomePage@Wuhan University</a>
-</div>
-</div>
-<br>
-
-
-<div style="text-align: justify;clear: both;" >
-  I am currently an Associate Professor in the <a href="https://cse.whu.edu.cn/">School of Cyber Science and Engineering</a> at <a href="https://www.whu.edu.cn/" target="_blank">Wuhan University</a> since 2022.12. I received my Ph.D. degree from <a href="https://www.tsinghua.edu.cn/">Tsinghua University</a> in 2020, where I was advised by Prof. <a href="https://www.cs.tsinghua.edu.cn/info/1137/3885.htm">Weidong Liu</a>. Before joining Wuhan University, I was a Staff Algorithm Engineer at <a href="https://www.baidu.com">Baidu Inc.</a> from 2020 to 2022. My main research interests include efficient large language models, web search, recommendation systems, and data denoising. I have received the <b>COLING 2025 Best Social Impact Paper</b>, the <b>KDD Cup 2019 Runner-Up Award</b>, and have been selected as a <b>Xiaomi Young Scholar</b> and <b>Huawei Young Scholar</b>.
-</div>
-<div style="text-align: justify;clear: both;">
-
-</div>
-<div style="background-color:#efefef;color:#eb002a; border: 2px solid #333; padding:5px;">
-Note: I am looking for self-motivated students to do long-term research with me! If you are interested in working with me, please drop me an email.
+<div class="page-header">
+  <img class="avatar" src="img/zoulixin.jpg" alt="Portrait of Lixin Zou" width="152" height="152">
+  <div class="page-header__body">
+    <h1 class="name">Lixin Zou</h1>
+    <p class="role">Associate Professor</p>
+    <p class="affiliation">
+      School of Cyber Science and Engineering, Wuhan University, China<br>
+      Xiaomi Young Scholar &nbsp;·&nbsp; Huawei Young Scholar
+    </p>
+    <p class="contact">
+      <span class="email">zoulixin [at] whu [dot] edu [dot] cn</span>
+      <span class="contact-links">
+        <a target="_blank" rel="noopener" href="https://scholar.google.com/citations?user=J8tHYjIAAAAJ">Google Scholar</a>
+        <a target="_blank" rel="noopener" href="https://jszy.whu.edu.cn/ZouLixin/zh_CN/index.htm">University Page</a>
+      </span>
+    </p>
+  </div>
 </div>
 
-<div id="News" class='xtitle'  >News</div>
-<ul class="news" style="line-height: 2em; overflow-y:auto; height: 200px">
-<li> <b>Best Journal Paper Award Winner</b> (Women in RecSys), congratulations to Min. <div style="float: right;">2025.09 </div> </li>
-<li> One paper accepted by NeurIPS 2025, congratulations to Qing. <div style="float: right;">2025.09 </div> </li>
-<li> One paper accepted by TPAMI, congratulations to Dr. Lin, Qing. <div style="float: right;">2025.09 </div> </li>
-<li> Three papers accepted by ACL Findings 2025, congratulations to Wenhua, Yunfan and Zihao. <div style="float: right;">2025.05 </div> </li>
-<li> Two papers accepted by IJCAI 2025, congratulations to Feng, Maolin. <div style="float: right;">2025.04 </div> </li>
-<li> <b>Won the COLING 2025 Best Social Impact Paper, congratulations to Min.</b> <div style="float: right;">2025.01</div> </li>
-<li> Selected by the Huawei Young Scholar Project 2024. <div style="float: right;">2024.12 </div> </li>
-<li> Three papers accepted by COLING 2025, congratulations to Min, Yunfan, Weicheng. <div style="float: right;">2024.11 </div> </li>
-<li> One paper accepted by TOIS 2024, congratulations to Qing. <div style="float: right;">2024.10 </div> </li>
-<li> One paper accepted by IPM 2024, congratulations to Min. <div style="float: right;">2024.10 </div> </li>
-<li> Two papers accepted by CIKM 2024, congratulations to Zihao and Zuoli. <div style="float: right;">2024.07 </div> </li>
-<li> One paper accepted by ECML 2024, congratulations to Min. <div style="float: right;">2024.05 </div> </li>
-<li> One paper accepted by ACL Findings 2024, congratulations to Chaoran. <div style="float: right;">2024.03 </div> </li>
-<li> One paper accepted by SIGIR 2024, congratulations to Dan Luo. <div style="float: right;">2024.03 </div> </li>
-<li> One paper accepted by WWW 2024, congratulations to Haitao. <div style="float: right;">2024.02 </div> </li>
-<li> One paper accepted by ICDE 2024, congratulations to Xiaokai. <div style="float: right;">2024.01 </div> </li>
-<li> Selected as the Xiaomi Young Scholar 2023. <div style="float: right;">2023.11 </div> </li>
-<li> One paper accepted by WSDM 2024, congratulations to Dan Luo. <div style="float: right;">2023.10 </div> </li>
-<li> One paper accepted by RecSys 2023, congratulations to Zihao. <div style="float: right;">2023.06 </div> </li>
-<li> One paper accepted by TNNLS 2023, congratulations to Yuanguo. <div style="float: right;">2023.04 </div> </li>
-<li> One paper accepted by TNNLS 2023, congratulations to Wanli. <div style="float: right;">2023.03 </div> </li>
-<li> One paper accepted by WWW 2023, congratulations to Kesen. <div style="float: right;">2023.02 </div> </li>
-<li> One paper accepted by NeurIPS 2022, congratulations to the team. <div style="float: right;">2022.12 </div> </li>
-</ul>
-
-<div id="Activities" class='xtitle' > Education and Work Experience </div>
-<ul class="news" style="line-height: 2em">
-<li>Associate Professor, School of Cyber Science and Engineering, <i>Wuhan University</i> <div style="float: right;">2022.12 - Present</div></li>
-<li>Staff Algorithm Engineer, Baidu Inc. <div style="float: right;">2020.07 - 2022.11 </div></li>
-<li>Ph.D. in Computer Science & Technology, Tsinghua University. <div style="float: right;">2015.09 - 2020.06 </div>  </li>
-<li>BEng. in Microelectronics, Northwestern Polytechnical University. <div style="float: right;">2011.09 - 2015.07 </div></li>
-</ul>
-
-<div id="Publications" class='xtitle' > Selected Publications <a style="font-size: 14px; font-family: Helvetica, Arial, sans-serif;" href="https://scholar.google.com/citations?user=J8tHYjIAAAAJ" >[Full Publications] </a> <span style="color:#333;font-size: 14px; font-family: Helvetica, Arial, sans-serif; "> (*Corresponding Author) </span>
-
+<div class="bio">
+  <p>I am currently an Associate Professor in the <a href="https://cse.whu.edu.cn/">School of Cyber Science and Engineering</a> at <a href="https://www.whu.edu.cn/" target="_blank" rel="noopener">Wuhan University</a> since 2022.12. I received my Ph.D. degree from <a href="https://www.tsinghua.edu.cn/">Tsinghua University</a> in 2020, where I was advised by Prof. <a href="https://www.cs.tsinghua.edu.cn/info/1137/3885.htm">Weidong Liu</a>. Before joining Wuhan University, I was a Staff Algorithm Engineer at <a href="https://www.baidu.com">Baidu Inc.</a> from 2020 to 2022. My main research interests include efficient large language models, web search, recommendation systems, and data denoising. I have received the <b>COLING 2025 Best Social Impact Paper</b>, the <b>KDD Cup 2019 Runner-Up Award</b>, and have been selected as a <b>Xiaomi Young Scholar</b> and <b>Huawei Young Scholar</b>.</p>
 </div>
-<div class="posts">
+
+<div class="notice">
+  <div class="notice__label">
+    Openings
+    <span class="zh" lang="zh-CN">招生</span>
+  </div>
+  <div class="notice__body">
+    <p>I am looking for self-motivated students to do long-term research with me, and I am currently recruiting <b>1 professional doctoral student</b>. If you are interested, please drop me an email.</p>
+    <p class="zh" lang="zh-CN">本人现招收 <b>1 名专业博士</b>（专业学位博士）。欢迎对科研有热情、愿意长期投入的同学邮件联系。</p>
+  </div>
+</div>
+
+<section class="section" aria-labelledby="news-title">
+  <h2 class="section-title" id="news-title">News</h2>
+  <ul class="dated-list">
+    <li><span><b>Best Journal Paper Award Winner</b> (Women in RecSys), congratulations to Min.</span><time datetime="2025-09">2025.09</time></li>
+    <li><span>One paper accepted by NeurIPS 2025, congratulations to Qing.</span><time datetime="2025-09">2025.09</time></li>
+    <li><span>One paper accepted by TPAMI, congratulations to Dr. Lin, Qing.</span><time datetime="2025-09">2025.09</time></li>
+    <li><span>Three papers accepted by ACL Findings 2025, congratulations to Wenhua, Yunfan and Zihao.</span><time datetime="2025-05">2025.05</time></li>
+    <li><span>Two papers accepted by IJCAI 2025, congratulations to Feng, Maolin.</span><time datetime="2025-04">2025.04</time></li>
+    <li><span><b>Won the COLING 2025 Best Social Impact Paper</b>, congratulations to Min.</span><time datetime="2025-01">2025.01</time></li>
+    <li><span>Selected by the Huawei Young Scholar Project 2024.</span><time datetime="2024-12">2024.12</time></li>
+    <li><span>Three papers accepted by COLING 2025, congratulations to Min, Yunfan, Weicheng.</span><time datetime="2024-11">2024.11</time></li>
+    <li><span>One paper accepted by TOIS 2024, congratulations to Qing.</span><time datetime="2024-10">2024.10</time></li>
+    <li><span>One paper accepted by IPM 2024, congratulations to Min.</span><time datetime="2024-10">2024.10</time></li>
+    <li><span>Two papers accepted by CIKM 2024, congratulations to Zihao and Zuoli.</span><time datetime="2024-07">2024.07</time></li>
+    <li><span>One paper accepted by ECML 2024, congratulations to Min.</span><time datetime="2024-05">2024.05</time></li>
+    <li><span>One paper accepted by ACL Findings 2024, congratulations to Chaoran.</span><time datetime="2024-03">2024.03</time></li>
+    <li><span>One paper accepted by SIGIR 2024, congratulations to Dan Luo.</span><time datetime="2024-03">2024.03</time></li>
+    <li><span>One paper accepted by WWW 2024, congratulations to Haitao.</span><time datetime="2024-02">2024.02</time></li>
+    <li><span>One paper accepted by ICDE 2024, congratulations to Xiaokai.</span><time datetime="2024-01">2024.01</time></li>
+    <li><span>Selected as the Xiaomi Young Scholar 2023.</span><time datetime="2023-11">2023.11</time></li>
+    <li><span>One paper accepted by WSDM 2024, congratulations to Dan Luo.</span><time datetime="2023-10">2023.10</time></li>
+    <li><span>One paper accepted by RecSys 2023, congratulations to Zihao.</span><time datetime="2023-06">2023.06</time></li>
+    <li><span>One paper accepted by TNNLS 2023, congratulations to Yuanguo.</span><time datetime="2023-04">2023.04</time></li>
+    <li><span>One paper accepted by TNNLS 2023, congratulations to Wanli.</span><time datetime="2023-03">2023.03</time></li>
+    <li><span>One paper accepted by WWW 2023, congratulations to Kesen.</span><time datetime="2023-02">2023.02</time></li>
+    <li><span>One paper accepted by NeurIPS 2022, congratulations to the team.</span><time datetime="2022-12">2022.12</time></li>
+  </ul>
+</section>
+
+<section class="section" aria-labelledby="experience-title">
+  <h2 class="section-title" id="experience-title">Education &amp; Experience</h2>
+  <ul class="dated-list">
+    <li><span>Associate Professor, School of Cyber Science and Engineering, <i>Wuhan University</i></span><time>2022.12 – Present</time></li>
+    <li><span>Staff Algorithm Engineer, Baidu Inc.</span><time>2020.07 – 2022.11</time></li>
+    <li><span>Ph.D. in Computer Science &amp; Technology, Tsinghua University</span><time>2015.09 – 2020.06</time></li>
+    <li><span>BEng. in Microelectronics, Northwestern Polytechnical University</span><time>2011.09 – 2015.07</time></li>
+  </ul>
+</section>
+
+<section class="section" aria-labelledby="publications-title">
+  <h2 class="section-title" id="publications-title">Selected Publications</h2>
+  <p class="section-note">(* Corresponding author) &nbsp;·&nbsp; <a target="_blank" rel="noopener" href="https://scholar.google.com/citations?user=J8tHYjIAAAAJ">Full publication list</a></p>
+
+  {% assign current_year = "" %}
   {% for post in site.posts %}
+    {% if post.is_show and post.highlight == nil %}
+      {% if post.year != current_year %}
+        <div class="pub-year">{{ post.year }}</div>
+        {% assign current_year = post.year %}
+      {% endif %}
 
-    {% if post.is_show %}
-        {% if post.highlight != None %}
-          <!-- <article class="post unimportant post-hidden"> -->
-        {% else %}
-          <article class="post">
-        {% endif %}
-    {% else %}
-      <article class="post unimportant post-hidden">
-    {% endif %}
+      <article class="pub">
+        <h3 class="pub-title">{{ post.title }}</h3>
 
+        <p class="pub-authors">{{ post.authors }}</p>
 
-      <!-- <div style="position: relative; left:-50px; font-size: 18px;">{{post.year}}</div> -->
-
-      <!-- <div style="text-align:center;"><img class="teaser-img" src="{{post.teaser}}"> </div> -->
-
-      <!-- <div class= "teaser-container">
-        <img class="teaser-left"  src="{{post.teaser}}">
-      </div> -->
-
-      <div class= "papertitle entry" >{{ post.title }}</div>
-
-      <div class="entry authors-entry">
-        {{ post.authors }}
-      </div>
-
-      <div class="entry">
-          <i>{{post.publication}}</i>, <i>{{post.year}}</i>
-          {% if post.journal%}
-           /
-            <i>{{post.journal}}</i>, <i>{{post.year}}</i>
+        <p class="pub-meta">
+          {% if post.conference_short and post.conference_short != "" %}
+            <span class="venue">{{ post.conference_short }}</span>
           {% endif %}
-      </div>
+          {% if post.publication and post.publication != "" %}
+            <span class="pub-venue-full">{{ post.publication }}</span>
+          {% endif %}
+          {% if post.journal and post.journal != "" %}
+            <span class="pub-venue-full">/ {{ post.journal }}</span>
+          {% endif %}
+        </p>
 
-      <div class="entry user-info">
+        {% assign has_links = false %}
+        {% if post.arxiv_url and post.arxiv_url != "" %}{% assign has_links = true %}{% endif %}
+        {% if post.extented_url and post.extented_url != "" %}{% assign has_links = true %}{% endif %}
+        {% if post.demo and post.demo != "" %}{% assign has_links = true %}{% endif %}
+        {% if post.project and post.project != "" %}{% assign has_links = true %}{% endif %}
+        {% if post.code and post.code != "" %}{% assign has_links = true %}{% endif %}
 
-        {% if post.arxiv%}
-        <a class='links' target="_blank" href="{{ post.arxiv_url }}" rel="paperurl">arXiv</a>
+        {% if has_links %}
+          <p class="pub-links">
+            {% if post.arxiv_url and post.arxiv_url != "" %}
+              <a target="_blank" rel="noopener" href="{{ post.arxiv_url }}">arXiv</a>
+            {% endif %}
+            {% if post.extented_url and post.extented_url != "" %}
+              <a target="_blank" rel="noopener" href="{{ post.extented_url }}">Extended Version</a>
+            {% endif %}
+            {% if post.demo and post.demo != "" %}
+              <a target="_blank" rel="noopener" href="{{ post.demo }}">Online Demo</a>
+            {% endif %}
+            {% if post.project and post.project != "" %}
+              <a target="_blank" rel="noopener" href="{{ post.project }}">Project Page</a>
+            {% endif %}
+            {% if post.code and post.code != "" %}
+              <a target="_blank" rel="noopener" href="{{ post.code }}">Code</a>
+            {% endif %}
+            {% if post.code and post.code != "" %}
+              <span class="pub-star">
+                <a target="_blank" rel="noopener" href="{{ post.code }}"><img src="https://img.shields.io/github/stars/{{ post.code | replace: 'https://github.com/', '' }}?style=social" alt="GitHub stars"></a>
+              </span>
+            {% endif %}
+          </p>
         {% endif %}
-
-        {% if post.extented_url%}
-        /
-        <a class='links' target="_blank" href="{{ post.extented_url }}" rel="paperurl">Extended Version</a>
-        {% endif %}
-
-        {% if post.demo%}
-        /
-        <a class='links' target="_blank" href="{{ post.demo }}" rel="paperurl">Online Demo</a>
-        {% endif %}
-
-        {% if post.project%}
-        /
-        <a class='links' target="_blank" href="{{ post.project }}" rel="paperurl">Project Page</a>
-        {% endif %}
-
-        {% if post.code%}
-        /
-        <a target="_blank" href="{{post.code}}">Github</a>
-        {% endif %}
-
-        {% if post.code%}
-        <div style="display: inline-block;float:right" class="xcode">
-        <a href="{{post.code}}"><img src="https://img.shields.io/github/stars/{{post.code| replace:'https://github.com/', ''}}?style=social"/></a>
-        </div>
-        {% endif %}
-
-        </div>
-      <div style ="clear:both"></div>
-      <!-- <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a> -->
-    </article>
+      </article>
+    {% endif %}
   {% endfor %}
-</div>
+</section>
 
+<section class="section" aria-labelledby="awards-title">
+  <h2 class="section-title" id="awards-title">Selected Awards</h2>
+  <ul class="dated-list">
+    <li><span><b>COLING 2025 Best Social Impact Paper</b></span><time>2025</time></li>
+    <li><span><b>Huawei Young Scholar</b></span><time>2024</time></li>
+    <li><span><b>Xiaomi Young Scholar</b></span><time>2023</time></li>
+    <li><span>Outstanding Staff of MEG, Baidu Inc.</span><time>2021</time></li>
+    <li><span>Outstanding Graduate of Department of Computer Science, Tsinghua University</span><time>2020</time></li>
+    <li><span>Tsinghua Yiqi Mei Scholarship</span><time>2019</time></li>
+    <li><span>The Runner Up Award of KDD Cup</span><time>2019</time></li>
+    <li><span>The Scholarship of People.cn</span><time>2017</time></li>
+    <li><span>First Prize in CCF National Big Data Innovation Contest, 1/1</span><time>2016</time></li>
+    <li><span>Yajun Wu Second Scholarship for Undergraduate Student, 1/1</span><time>2014</time></li>
+    <li><span>National Scholarship for Undergraduate Student, 1/1</span><time>2014</time></li>
+    <li><span>The Honorable Mention in the US Mathematical Contest in Modeling</span><time>2014</time></li>
+    <li><span>National Scholarship for Undergraduate Student, 1/1</span><time>2012</time></li>
+  </ul>
+</section>
 
-<div id="Misc" class='xtitle'>Selected Awards</div>
-<ul>
-<li><b>COLING 2025 Best Social Impact Paper</b>. <div style="float: right;">2025</div></li>
-<li><b>Huawei Young Scholar</b>. <div style="float: right;">2024</div></li>
-<li><b>Xiaomi Young Scholar</b>. <div style="float: right;">2023</div></li>
-<li>Outstanding Staff of MEG, Baidu Inc.. <div style="float: right;">2021</div></li>
-<li>Outstanding Graduate of Department of Computer Science, Tsinghua University. <div style="float: right;">2020</div></li>
-<li>Tsinghua Yiqi Mei Scholarship. <div style="float: right;">2019</div></li>
-<li>The Runner Up Award of KDD Cup. <div style="float: right;">2019</div></li>
-<li>The Scholarship of People.cn.. <div style="float: right;">2017</div></li>
-<li>First Prize in CCF National Big Data Innovation Contest, 1/1. <div style="float: right;">2016</div></li>
-<li>Yajun Wu Second Scholarship for Undergraduate Student, 1/1. <div style="float: right;">2014</div></li>
-<li>National Scholarship for Undergraduate Student, 1/1. <div style="float: right;">2014</div></li>
-<li>National Scholarship for Undergraduate Student, 1/1. <div style="float: right;">2012</div></li>
-<li>The Honorable Mention in the US Mathematical Contest in Modeling. <div style="float: right;">2014</div></li>
-</ul>
+<section class="section" aria-labelledby="service-title">
+  <h2 class="section-title" id="service-title">Professional Service</h2>
+  <p class="service-role">Program Committee Member &amp; Reviewer</p>
+  <ul class="service-list">
+    <li><span class="year">2024</span><span>WSDM, WWW, DASFFA, AAAI, ECIR, TKDE, JASIST, TOIS, SIGIR, KDD, IJCAI</span></li>
+    <li><span class="year">2023</span><span>KDD, SIGIR, IJCAI, AAAI, WWW, ECIR, TKDE, JASIST, TALLIP, TOIS</span></li>
+    <li><span class="year">2022</span><span>WSDM, IJCAI, KDD, SIGIR, NeurIPS</span></li>
+    <li><span class="year">2021</span><span>SIGIR, IJCAI, AAAI, CIKM</span></li>
+    <li><span class="year">2020</span><span>SIGIR, IJCAI, SIGKDD</span></li>
+  </ul>
+</section>
 
-
-
-<div id="Misc" class='xtitle' >Profressional Service</div>
-<ul>
-    <li class="small-text">PC Member & Reviewer</li>
-    <ul>
-      <li class="small-text">2024: WSDM, WWW, DASFFA, AAAI, ECIR, TKDE, JASIST, TOIS, SIGIR, KDD, IJCAI</li>
-      <li class="small-text">2023: KDD, SIGIR, IJCAI, AAAI, WWW, ECIR, TKDE, JASIST, TALLIP, TOIS</li>
-      <li class="small-text">2022: WSDM, IJCAI, KDD, SIGIR, NeurIPS</li>
-      <li class="small-text">2021: SIGIR, IJCAI, AAAI, CIKM</li>
-      <li class="small-text">2020: SIGIR, IJCAI, SIGKDD</li>
-    </ul>
-</ul>
-
+<footer class="page-footer">
+  <span>© Lixin Zou</span>
+  <span>School of Cyber Science and Engineering, Wuhan University</span>
+</footer>
